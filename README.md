@@ -1,1 +1,3 @@
-# php-stuff-management
+# PHP STUFF MANAGEMENT PROJECT
+
+Stack: MySQL, PHP, PDO, HTML, CSS and Bootstrap
