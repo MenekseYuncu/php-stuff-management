@@ -1,3 +1,40 @@
+<?php
+
+
+$connection = mysqli_connect("localhost", "root", "");
+$db = mysqli_select_db($connection, 'odev_1');
+
+
+if (isset($_POST['insertdata'])) {
+
+    $tc = $_POST['tc'];
+    $ad = $_POST['ad'];
+    $soyad = $_POST['soyad'];
+    $meslek = $_POST['meslek'];
+    $mail = $_POST['mail'];
+    $telefon = $_POST['telefon'];
+    $cinsiyet = $_POST['cinsiyet'];
+    $dogum_tarihi = $_POST['dogum_tarihi'];
+    $adres = $_POST['adres'];
+    $kisi_bilgi = $_POST['kisi_bilgi'];
+
+
+    $query = "INSERT INTO personeller (`tc`, `ad`, `soyad`, `meslek`, `mail`, `telefon`, `cinsiyet`, `dogum_tarihi`, `adres`, `kisi_bilgi`)
+     VALUES ('$tc','$ad','$soyad','$meslek','$mail','$telefon','$cinsiyet', '$dogum_tarihi', '$adres', '$kisi_bilgi')";
+    $squery_run = mysqli_query($connection, $query);
+
+
+    if ($squery_run) {
+        echo '<script> alert("Data Saved");</script>';
+        header('Location:addstuff.php');
+    } else {
+        echo '<script> alert("Data Not Saved");</script>';
+    }
+
+    
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,16 +66,29 @@
     </nav>
 
 
+    <div class="container">
+        <div class="jumbotron">
+            <div class="row">
+                <div class="col-md-12">
+                  
+                    <h2> PHP - CRUD : ADD Data </h2>
+                    <hr>
+                    <!-- <form action="" method="post">
+                        <div class="form-group">
+                            <label for=""> First Name </label>
+                            <input type="text" name="username" class="form-control" placeholder="Enter First Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for=""> password </label>
+                            <input type="text" name="password" class="form-control" placeholder="Enter Last Name" required>
+                        </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="addstuffmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Personel Bilgisi Girin</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form action="insertdata.php" method="POST">
+                        <button type="submit" name="insert" class="btn btn-primary"> Save Data </button>
+
+                        <a href="index.php" class="btn btn-danger"> BACK </a>
+                    </form> -->
+
+                    <form action="" method="POST">
                     <div class="modal-body">
 
                         <div class="form-group">
@@ -84,37 +134,15 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
-                        <button type="submit" name="#insertdata" class="btn btn-primary">Kaydet</button>
+                        <a  href="addstuff.php" class="btn btn-danger"> BACK </a>
+                        <button type="submit" name="insertdata" class="btn btn-primary">Kaydet</button>
                     </div>
                 </form>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="jumbotron">
-            <div class="card">
-                <h2> Personel Kayıt Formu</h2>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addstuffmodal">
-                        Form Ekle
-                    </button>
+                      
                 </div>
             </div>
-
-           
         </div>
-
-
     </div>
-
-
-
-
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
