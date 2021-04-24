@@ -18,8 +18,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<link rel="stylesheet" href="styles.css">
-
 </head>
 <body>
  <br>
@@ -50,7 +48,7 @@
       </th>
                         <th>Name</th>
                         <th>Email</th>
-      <th>Address</th>
+                        <th>Address</th>
                         <th>Phone</th>
                         <th>Actions</th>
                     </tr>
@@ -86,20 +84,7 @@
                 ?>
                 </tbody>
             </table>
-   <div class="clearfix">
-                <div class="hint-text">Showing <b>5</b> out of <b>100</b> entries</div>
-                <ul class="pagination">
-                    <li class="page-item disabled"><a href="#">Previous</a></li>
-                    <li class="page-item"><a href="#" class="page-link">1</a></li>
-                    <li class="page-item"><a href="#" class="page-link">2</a></li>
-                    <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                    <li class="page-item"><a href="#" class="page-link">4</a></li>
-                    <li class="page-item"><a href="#" class="page-link">5</a></li>
-                    <li class="page-item"><a href="#" class="page-link">Next</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
+
  <!-- Edit Modal HTML -->
  <div id="addEmployeeModal" class="modal fade">
   <div class="modal-dialog">
@@ -201,8 +186,6 @@
             },3000);
         });
     </script>
-
-<script src="javascript.js"></script>
 
 </body>
 </html>                                                                                                                                 

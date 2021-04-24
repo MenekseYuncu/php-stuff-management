@@ -25,7 +25,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
+<nav class="navbar navbar-expand-md navbar-light bg-light">
         <a href="#" class="navbar-brand active ">Anasayfa</a>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -33,8 +33,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav">
-                <a href="#" class="nav-item nav-link">Kişi Ekle</a>
-                <a href="#" class="nav-item nav-link">Kişileri Listele</a>
+                <a href="addstuff.php" class="nav-item nav-link">Kişi Ekle</a>
+                <a href="stuffList.php" class="nav-item nav-link">Kişileri Listele</a>
             </div>
             <div class="navbar-nav ml-auto">
                 <a href="logout.php" class="btn btn-danger ml-3">Çıkış Yap</a>

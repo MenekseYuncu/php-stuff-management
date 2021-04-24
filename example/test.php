@@ -19,5 +19,35 @@
         echo "Error: " . $sql . " " . mysqli_error($conn);
         }
         mysqli_close($conn);
+    }else if($_POST['update']){
+
+            $tc = $_POST['tc'];
+            $ad = $_POST['ad'];
+            $soyad = $_POST['soyad'];
+            $meslek = $_POST['meslek'];
+            $mail = $_POST['mail'];
+            $telefon = $_POST['telefon'];
+            $cinsiyet = $_POST['cinsiyet'];
+            $dogum_tarihi = $_POST['dogum_tarihi'];
+            $adres = $_POST['adres'];
+            $kisi_bilgi = $_POST['kisi_bilgi'];
+
+            $query = "UPDATE personeller SET tc='$tc', ad='$ad',soyad='$soyad', meslek='$meslek', mail='$mail', telefon='$telefon', cinsiyet='$cinsiyet', dogum_tarihi='$dogum_tarihi', adres='$adres', kisi_bilgi=' $kisi_bilgi' WHERE id='$id'  ";
+            $query_run = mysqli_query($connection, $query);
+            printf("Error: %s\n", mysqli_error($con));
+            exit();
+
+            if ($query_run)
+            {
+                echo '<script> alert("Data Updated"); </script>';
+                // header("location:stufflist2.php");
+                
+            }
+            else
+            {
+                echo '<script> alert("Data Not Updated"); </script>';
+            }
+
+        
     }
 ?>           
