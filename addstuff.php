@@ -58,7 +58,7 @@ if (isset($_POST['insertdata'])) {
 
 <body>
     <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <a href="#" class="navbar-brand active ">Anasayfa</a>
+        <a href="index.php" class="navbar-brand active ">Anasayfa</a>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
