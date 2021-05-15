@@ -2,7 +2,7 @@
 
 
 $connection = mysqli_connect("localhost", "root", "");
-$db = mysqli_select_db($connection, 'odev_1');
+$db = mysqli_select_db($connection, 'odev_final');
 
 
 if (isset($_POST['add'])) {
@@ -17,10 +17,11 @@ if (isset($_POST['add'])) {
     $dogum_tarihi = $_POST['dogum_tarihi'];
     $adres = $_POST['adres'];
     $kisi_bilgi = $_POST['kisi_bilgi'];
+    $personel_grup = $_POST['personel_grup'];
 
 
-    $query = "INSERT INTO personeller (`tc`, `ad`, `soyad`, `meslek`, `mail`, `telefon`, `cinsiyet`, `dogum_tarihi`, `adres`, `kisi_bilgi`)
-     VALUES ($tc,$ad,$soyad,$meslek,$mail,$telefon,$cinsiyet,$dogum_tarihi,$adres,$kisi_bilgi)";
+    $query = "INSERT INTO personeller (`tc`, `ad`, `soyad`, `meslek`, `mail`, `telefon`, `cinsiyet`, `dogum_tarihi`, `adres`, `kisi_bilgi`,'personel_grup')
+     VALUES ($tc,$ad,$soyad,$meslek,$mail,$telefon,$cinsiyet,$dogum_tarihi,$adres,$kisi_bilgi,$personel_grup)";
    // $squery_run = mysqli_query($connection, $query);
    
    if (mysqli_query($conn, $sql))

@@ -1,6 +1,6 @@
 <?php
 $connection = mysqli_connect("localhost","root","");
-$db = mysqli_select_db($connection, 'odev_1');
+$db = mysqli_select_db($connection, 'odev_final');
 
     if(isset($_POST['updatedata']))
     {   

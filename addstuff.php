@@ -11,8 +11,9 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
 
 $connection = mysqli_connect("localhost", "root", "");
-$db = mysqli_select_db($connection, 'odev_1');
+$db = mysqli_select_db($connection, 'odev_final');
 
+//$personel_grup = "boş";
 
 if (isset($_POST['insertdata'])) {
 
@@ -26,10 +27,11 @@ if (isset($_POST['insertdata'])) {
     $dogum_tarihi = $_POST['dogum_tarihi'];
     $adres = $_POST['adres'];
     $kisi_bilgi = $_POST['kisi_bilgi'];
+    $personel_grup = $_POST['personel_grup'];
 
 
-    $query = "INSERT INTO personeller (`tc`, `ad`, `soyad`, `meslek`, `mail`, `telefon`, `cinsiyet`, `dogum_tarihi`, `adres`, `kisi_bilgi`)
-     VALUES ('$tc','$ad','$soyad','$meslek','$mail','$telefon','$cinsiyet', '$dogum_tarihi', '$adres', '$kisi_bilgi')";
+    $query = "INSERT INTO personeller (`tc`, `ad`, `soyad`, `meslek`, `mail`, `telefon`, `cinsiyet`, `dogum_tarihi`, `adres`, `kisi_bilgi`, `personel_grup`)
+     VALUES ('$tc','$ad','$soyad','$meslek','$mail','$telefon','$cinsiyet', '$dogum_tarihi', '$adres', '$kisi_bilgi', '$personel_grup')";
     $squery_run = mysqli_query($connection, $query);
 
 
@@ -67,6 +69,8 @@ if (isset($_POST['insertdata'])) {
             <div class="navbar-nav">
                 <a href="addstuff.php" class="nav-item nav-link">Kişi Ekle</a>
                 <a href="stuffList.php" class="nav-item nav-link">Kişileri Listele</a>
+                <a href="" class="nav-item nav-link">Loglar</a>
+                <a href="" class="nav-item nav-link">Kullancı Bilgileri</a>
             </div>
             <div class="navbar-nav ml-auto">
                 <a href="logout.php" class="btn btn-danger ml-3">Çıkış Yap</a>
@@ -80,26 +84,20 @@ if (isset($_POST['insertdata'])) {
             <div class="row">
                 <div class="col-md-12">
                   
-                    <h2> PHP - CRUD : ADD Data </h2>
+                    <h2>Formu Doldurunuz </h2>
                     <hr>
-                    <!-- <form action="" method="post">
-                        <div class="form-group">
-                            <label for=""> First Name </label>
-                            <input type="text" name="username" class="form-control" placeholder="Enter First Name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for=""> password </label>
-                            <input type="text" name="password" class="form-control" placeholder="Enter Last Name" required>
-                        </div>
-
-                        <button type="submit" name="insert" class="btn btn-primary"> Save Data </button>
-
-                        <a href="index.php" class="btn btn-danger"> BACK </a>
-                    </form> -->
-
                     <form action="" method="POST">
                     <div class="modal-body">
-
+                        <div class="form-group">
+                            <label>Personel Grubu</label> <br />
+                            <select id="personel_grup" name="personel_grup" class="form-select form-select-lg"  aria-label="Personel Grubu seçiniz">
+                                <option selected disabled >Personel Grubu seçiniz</option>
+                                <option value="Web Birimi">Web Birimi</option>
+                                <option value="Sistem Birimi">Sistem Birimi</option>
+                                <option value="Network Birimi">Network Birimi</option>
+                                <option value="İdari Birim">İdari Birim</option>
+                            </select>
+                        </div>
                         <div class="form-group">
                             <label>Tc No</label>
                             <input type="text" name="tc" class="form-control" placeholder="TC No Giriniz">
@@ -143,7 +141,7 @@ if (isset($_POST['insertdata'])) {
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <a  href="addstuff.php" class="btn btn-danger"> BACK </a>
+                        <a  href="addstuff.php" class="btn btn-danger"> GERİ</a>
                         <button type="submit" name="insertdata" class="btn btn-primary">Kaydet</button>
                     </div>
                 </form>
@@ -157,6 +155,12 @@ if (isset($_POST['insertdata'])) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $('#personel_grup').on('click',function() {
+            console.log($(this).val());
+
+        });
+    </script>
 </body>
 
 </html>

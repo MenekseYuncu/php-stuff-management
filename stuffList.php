@@ -47,6 +47,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             <div class="navbar-nav">
                 <a href="addstuff.php" class="nav-item nav-link">Kişi Ekle</a>
                 <a href="stuffList.php" class="nav-item nav-link">Kişileri Listele</a>
+                <a href="" class="nav-item nav-link">Loglar</a>
+                <a href="" class="nav-item nav-link">Kullancı Bilgileri</a>
             </div>
             <div class="navbar-nav ml-auto">
                 <a href="logout.php" class="btn btn-danger ml-3">Çıkış Yap</a>
@@ -73,7 +75,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                         <input type="hidden" name="update_id" id="update_id">
 
                         <div class="form-group">
-                            <label> tc </label>
+                            <label> Tc </label>
                             <input type="text" name="tc" id="tc" class="form-control"
                                 placeholder="Enter tc">
                         </div>
@@ -85,7 +87,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                         </div>
 
                         <div class="form-group">
-                            <label> soyad </label>
+                            <label> Soyad </label>
                             <input type="text" name="soyad" id="soyad" class="form-control"
                                 placeholder="Enter soyad">
                         </div>
@@ -97,35 +99,35 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                         </div>
 
                         <div class="form-group">
-                            <label> mail </label>
+                            <label> Mail </label>
                             <input type="text" name="mail" id="mail" class="form-control"
                                 placeholder="Enter mail">
                         </div>
 
                         <div class="form-group">
-                            <label> Phone Number </label>
+                            <label> Telefon No </label>
                             <input type="text" name="telefon" id="telefon" class="form-control"
                                 placeholder="Enter Phone Number">
                         </div>
 
                         <div class="form-group">
-                            <label> cinsiyet </label>
+                            <label> Cinsiyet </label>
                             <input type="text" name="cinsiyet" id="cinsiyet" class="form-control"
                                 placeholder="Enter cinsiyet">
                         </div>
 
                         <div class="form-group">
-                            <label> dogum_tarihi </label>
+                            <label> Dogum Tarihi </label>
                             <input type="text" name="dogum_tarihi" id="dogum_tarihi" class="form-control"
                                 placeholder="Enter dogum_tarihi">
                         </div>                        <div class="form-group">
-                            <label> adres </label>
+                            <label> Adres </label>
                             <input type="text" name="adres" id="adres" class="form-control"
                                 placeholder="Enter adres">
                         </div>
 
                         <div class="form-group">
-                            <label> kisi_bilgi </label>
+                            <label> Kisi Bilgi </label>
                             <input type="text" name="kisi_bilgi" id="kisi_bilgi" class="form-control"
                                 placeholder="Enter kisi_bilgi">
                         </div>
@@ -133,8 +135,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" name="updatedata" class="btn btn-primary">Update Data</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                        <button type="submit" name="updatedata" class="btn btn-primary">Güncelle</button>
                     </div>
                 </form>
 
@@ -148,7 +150,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"> Delete Personel Data </h5>
+                    <h5 class="modal-title" id="exampleModalLabel"> Kişisel Verilerin Silinmesi </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -160,11 +162,11 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
                         <input type="hidden" name="delete_id" id="delete_id">
 
-                        <h4> Do you want to Delete this Data ??</h4>
+                        <h4> Bu verileri silmek istiyor musunuz?</h4>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal"> NO </button>
-                        <button type="submit" name="deletedata" class="btn btn-primary"> Yes !! Delete it. </button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"> Hayır </button>
+                        <button type="submit" name="deletedata" class="btn btn-primary">Evet </button>
                     </div>
                 </form>
 
@@ -191,9 +193,9 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                         <thead>
                             <tr>
                                 <th scope="col"> ID</th>
-                                <th scope="col"> tc</th>
+                                <th scope="col"> Tc No</th>
                                 <th scope="col"> Ad </th>
-                                <th scope="col"> soyad </th>
+                                <th scope="col"> Soyad </th>
                                 <th scope="col"> Meslek </th>
                                 <th scope="col"> Mail </th>
                                 <th scope="col"> Telefon No </th>
@@ -201,8 +203,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                                 <th scope="col"> Dogum Tarihi </th>
                                 <th scope="col"> Adres </th>
                                 <th scope="col"> Hakkında </th>
-                                <th scope="col"> EDIT </th>
-                                <th scope="col"> DELETE </th>
+                                <th scope="col"> Düzenle </th>
+                                <th scope="col"> Sil </th>
                             </tr>
                         </thead>
                         <?php
