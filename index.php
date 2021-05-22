@@ -7,6 +7,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: login.php");
     exit;
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -35,8 +36,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             <div class="navbar-nav">
                 <a href="addstuff.php" class="nav-item nav-link">Kişi Ekle</a>
                 <a href="stuffList.php" class="nav-item nav-link">Kişileri Listele</a>
-                <a href="" class="nav-item nav-link">Loglar</a>
-                <a href="" class="nav-item nav-link">Kullancı Bilgileri</a>
+                <a href="log.php" class="nav-item nav-link">Loglar</a>
+                <a href="kullanici.php" class="nav-item nav-link">Kullancı Bilgileri</a>
             </div>
             <div class="navbar-nav ml-auto">
                 <a href="logout.php" class="btn btn-danger ml-3">Çıkış Yap</a>
@@ -44,9 +45,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         </div>
     </nav>
     <h1 class="my-5">Merhaba,<b><?php echo htmlspecialchars($_SESSION["username"]); ?></b> Sitemize Hoşgeldin ..</h1>
-    <p>
 
-    </p>
 </body>
 
 </html>

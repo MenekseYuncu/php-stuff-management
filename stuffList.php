@@ -2,11 +2,35 @@
 // Initialize the session
 session_start();
 
-// Check if the user is logged in, if not then redirect him to login page
-if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-    header("location: login.php");
-    exit;
+// // Check if the user is logged in, if not then redirect him to login page
+// if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+//     header("location: login.php");
+//     exit;
+// }
+
+function console_log( $data ){
+    echo '<script>';
+    echo 'console.log('. json_encode( $data ) .')';
+    echo '</script>';
 }
+
+
+$connection = mysqli_connect("localhost","root","");
+$db = mysqli_select_db($connection, 'odev_final');
+
+$query = "SELECT * FROM personeller";
+$query_run = mysqli_query($connection, $query);
+
+if (isset($_POST['grup'])) {
+
+    console_log($_POST['grup']);
+    $query = "SELECT * FROM personeller Where personel_grup = 'Web Birimi'";
+    $query_run = mysqli_query($connection, $query);
+    
+
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,8 +71,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             <div class="navbar-nav">
                 <a href="addstuff.php" class="nav-item nav-link">Kişi Ekle</a>
                 <a href="stuffList.php" class="nav-item nav-link">Kişileri Listele</a>
-                <a href="" class="nav-item nav-link">Loglar</a>
-                <a href="" class="nav-item nav-link">Kullancı Bilgileri</a>
+                <a href="log.php" class="nav-item nav-link">Loglar</a>
+                <a href="kullanici.php" class="nav-item nav-link">Kullancı Bilgileri</a>
             </div>
             <div class="navbar-nav ml-auto">
                 <a href="logout.php" class="btn btn-danger ml-3">Çıkış Yap</a>
@@ -132,6 +156,17 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                                 placeholder="Enter kisi_bilgi">
                         </div>
 
+                        <div class="form-group">
+                            <label>Personel Grubu</label> <br />
+                            <select id="personel_grup" name="personel_grup" class="form-select form-select-lg"  aria-label="Personel Grubu seçiniz">
+                                <option selected disabled >Personel Grubu seçiniz</option>
+                                <option value="Web Birimi">Web Birimi</option>
+                                <option value="Sistem Birimi">Sistem Birimi</option>
+                                <option value="Network Birimi">Network Birimi</option>
+                                <option value="İdari Birim">İdari Birim</option>
+                            </select>
+                        </div>
+
 
                     </div>
                     <div class="modal-footer">
@@ -182,17 +217,23 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             <div class="card">
                 <div class="card-body">
 
-                    <?php
-                $connection = mysqli_connect("localhost","root","");
-                $db = mysqli_select_db($connection, 'odev_1');
 
-                $query = "SELECT * FROM personeller";
-                $query_run = mysqli_query($connection, $query);
-            ?>
+                        <div class="form-group">
+                            <label>Personel Grubu</label> <br />
+                            <select id="birim" name="birim" class="form-select form-select-lg"  aria-label="Personel Grubu seçiniz">
+                                <option selected disabled >Personel Grubu seçiniz</option>
+                                <option value="Web Birimi">Web Birimi</option>
+                                <option value="Sistem Birimi">Sistem Birimi</option>
+                                <option value="Network Birimi">Network Birimi</option>
+                                <option value="İdari Birim">İdari Birim</option>
+                            </select>
+
+                        </div>
+                       
                     <table id="datatableid" class="table table-bordered table-dark">
                         <thead>
                             <tr>
-                                <th scope="col"> ID</th>
+                                <th scope="col"> ID</th>                                
                                 <th scope="col"> Tc No</th>
                                 <th scope="col"> Ad </th>
                                 <th scope="col"> Soyad </th>
@@ -203,11 +244,13 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                                 <th scope="col"> Dogum Tarihi </th>
                                 <th scope="col"> Adres </th>
                                 <th scope="col"> Hakkında </th>
+                                <th scope="col"> Personel Grubu</th>
                                 <th scope="col"> Düzenle </th>
                                 <th scope="col"> Sil </th>
                             </tr>
                         </thead>
                         <?php
+                        
                 if($query_run)
                 {
                     foreach($query_run as $row)
@@ -226,6 +269,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                                 <td> <?php echo $row['dogum_tarihi']; ?> </td>
                                 <td> <?php echo $row['adres']; ?> </td>
                                 <td> <?php echo $row['kisi_bilgi']; ?> </td>
+                                <td> <?php echo $row['personel_grup']; ?> </td>
                                 <td>
                                     <button type="button" class="btn btn-success editbtn"> Duzenle </button>
                                 </td>
@@ -313,3 +357,52 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
 </body>
 </html>
+
+<script>
+        $('#birim').change(function() {
+            console.log($(this).val());
+            
+            $birim = $(this).val();
+
+            var val = $(this).val();
+
+            // $.post('http://localhost/personelfinal/stuffList.php', {'grup' : val}, function(data){
+            //     console.log("buradaıııım");
+            // });
+
+            // var fd = new FormData();    
+            // fd.append( 'grup', val );
+
+            // $.ajax({
+            // url: 'http://localhost/personelfinal/stuffList.php',
+            // data: fd,
+            // processData: false,
+            // contentType: false,
+            // type: 'POST',
+            // success: function(data){
+            //     alert(data);
+            // }
+            // });
+
+
+            var form = new FormData();
+            form.append("grup", "Web Birimi");
+
+            var settings = {
+            "url": "http://localhost/personelfinal/stuffList.php",
+            "method": "POST",
+            "processData": false,
+            "mimeType": "multipart/form-data",
+            "contentType": false,
+            "data": form
+            };
+
+            $.ajax(settings).done(function (response) {
+                console.log("olduy");
+                console.log(response);
+            });
+
+
+           
+        });
+</script>

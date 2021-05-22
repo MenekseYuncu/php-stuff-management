@@ -16,10 +16,11 @@ $db = mysqli_select_db($connection, 'odev_final');
         $dogum_tarihi = $_POST['dogum_tarihi'];
         $adres = $_POST['adres'];
         $kisi_bilgi = $_POST['kisi_bilgi'];
+        $personel_grup = $_POST['personel_grup'];
 
         $query = "UPDATE personeller SET tc='$tc', ad='$ad',soyad='$soyad', meslek='$meslek', mail='$mail',
          telefon='$telefon', cinsiyet='$cinsiyet', dogum_tarihi='$dogum_tarihi',
-          adres='$adres', kisi_bilgi=' $kisi_bilgi' WHERE id='$id'  ";
+          adres='$adres', kisi_bilgi=' $kisi_bilgi', personel_grup='$personel_grup'  WHERE id='$id'  ";
         $query_run = mysqli_query($connection, $query);
 
         if($query_run)

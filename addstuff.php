@@ -55,6 +55,12 @@ if (isset($_POST['insertdata'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personel Bilgileri</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font: 14px sans-serif;
+            text-align: center;
+        }
+    </style>
 
 </head>
 
@@ -69,8 +75,8 @@ if (isset($_POST['insertdata'])) {
             <div class="navbar-nav">
                 <a href="addstuff.php" class="nav-item nav-link">Kişi Ekle</a>
                 <a href="stuffList.php" class="nav-item nav-link">Kişileri Listele</a>
-                <a href="" class="nav-item nav-link">Loglar</a>
-                <a href="" class="nav-item nav-link">Kullancı Bilgileri</a>
+                <a href="log.php" class="nav-item nav-link">Loglar</a>
+                <a href="kullanici.php" class="nav-item nav-link">Kullancı Bilgileri</a>
             </div>
             <div class="navbar-nav ml-auto">
                 <a href="logout.php" class="btn btn-danger ml-3">Çıkış Yap</a>
@@ -158,7 +164,6 @@ if (isset($_POST['insertdata'])) {
     <script>
         $('#personel_grup').on('click',function() {
             console.log($(this).val());
-
         });
     </script>
 </body>

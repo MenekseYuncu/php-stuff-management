@@ -2,10 +2,16 @@
 // Initialize the session
 session_start();
 
-// Check if the user is already logged in, if yes then redirect him to index page
+//Check if the user is already logged in, if yes then redirect him to index page
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-    header("location: index.php");
+   header("location: index.php");
     exit;
+}
+
+function console_log( $data ){
+    echo '<script>';
+    echo 'console.log('. json_encode( $data ) .')';
+    echo '</script>';
 }
 
 
@@ -32,15 +38,6 @@ $username_err = $password_err = $login_err = "";
 // Processing form data when form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    //Check if the generated code and input valideCode are matching
-    // $validateCode = trim($_POST['validateCode']);
-    // echo("val: ".$validateCode ." -- gen: " .$generatedCode);
-    // if($validateCode == $generatedCode){
-    //     echo("vsadasdasdasdas");
-    //     echo("val: ".$validateCode ." -- gen: " .$generatedCode);
-    // }else {
-    //     echo("va2222l: ".$validateCode ." -- g2222en: " .$generatedCode);
-    // }
         // Check if username is empty
         if (empty(trim($_POST["username"]))) {
             $username_err = "Please enter username.";
@@ -83,6 +80,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 $_SESSION["loggedin"] = true;
                                 $_SESSION["id"] = $id;
                                 $_SESSION["username"] = $username;
+                                // Store some stuff...
+                                $_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
+
+                                //log kaydını tut
+                                
+                                $connection = mysqli_connect("localhost", "root", "");
+                                $db = mysqli_select_db($connection, 'odev_final');
+
+                                date_default_timezone_set('Europe/Istanbul');
+                                $login_date = date('Y-m-d H:i:s');
+                                $user_id = $_SESSION["id"];
+                                $ipAddr =  $_SESSION['ip'];
+                                $log_tip = "Giris";
+
+
+                                $query = "INSERT INTO user_logs (`user_id`, `login_date`, `ip_addr`, `log_tip`) VALUES( '$user_id', '$login_date', '$ipAddr', '$log_tip')";
+                                $query_run = mysqli_query($connection, $query);
+                            
 
                                 // Redirect user to index page
                                 header("location: index.php");
