@@ -2,11 +2,11 @@
 // Initialize the session
 session_start();
 
-// // Check if the user is logged in, if not then redirect him to login page
-// if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-//     header("location: login.php");
-//     exit;
-// }
+// Check if the user is logged in, if not then redirect him to login page
+if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+    header("location: login.php");
+    exit;
+}
 
 function console_log( $data ){
     echo '<script>';
@@ -23,13 +23,11 @@ $query_run = mysqli_query($connection, $query);
 
 if (isset($_POST['grup'])) {
 
+    
     console_log($_POST['grup']);
     $query = "SELECT * FROM personeller Where personel_grup = 'Web Birimi'";
     $query_run = mysqli_query($connection, $query);
-    
-
 }
-
 
 ?>
 <!DOCTYPE html>
@@ -211,27 +209,28 @@ if (isset($_POST['grup'])) {
 
 
 
-
     <div class="container" >
 
-            <div class="card">
-                <div class="card-body">
+        <div class="card">
+            <div class="card-body">
 
 
-                        <div class="form-group">
-                            <label>Personel Grubu</label> <br />
-                            <select id="birim" name="birim" class="form-select form-select-lg"  aria-label="Personel Grubu seçiniz">
-                                <option selected disabled >Personel Grubu seçiniz</option>
-                                <option value="Web Birimi">Web Birimi</option>
-                                <option value="Sistem Birimi">Sistem Birimi</option>
-                                <option value="Network Birimi">Network Birimi</option>
-                                <option value="İdari Birim">İdari Birim</option>
-                            </select>
+                <div class="form-group">
+                    <label>Personel Grubu</label> <br />
 
-                        </div>
+                    <select id="birim" name="birim" class="form-select form-select-lg"  aria-label="Personel Grubu seçiniz">
+                        <option selected disabled >Personel Grubu seçiniz</option>
+                        <option value="Web Birimi">Web Birimi</option>
+                        <option value="Sistem Birimi">Sistem Birimi</option>
+                        <option value="Network Birimi">Network Birimi</option>
+                        <option value="İdari Birim">İdari Birim</option>
+                    </select>
+
+                    <button type="button" class="btn btn-success birimbtn"> Birim Elemanlarını Getir </button>
+                </div>
                        
-                    <table id="datatableid" class="table table-bordered table-dark">
-                        <thead>
+                <table id="datatableid" class="table table-bordered table-dark">
+                    <thead>
                             <tr>
                                 <th scope="col"> ID</th>                                
                                 <th scope="col"> Tc No</th>
@@ -248,51 +247,49 @@ if (isset($_POST['grup'])) {
                                 <th scope="col"> Düzenle </th>
                                 <th scope="col"> Sil </th>
                             </tr>
-                        </thead>
+                    </thead>
                         <?php
                         
-                if($query_run)
-                {
-                    foreach($query_run as $row)
-                    {
-            ?>
-                        <tbody>
-                            <tr>
-                                <td> <?php echo $row['id']; ?> </td>
-                                <td> <?php echo $row['tc']; ?> </td>
-                                <td> <?php echo $row['ad']; ?> </td>
-                                <td> <?php echo $row['soyad']; ?> </td>
-                                <td> <?php echo $row['meslek']; ?> </td>
-                                <td> <?php echo $row['mail']; ?> </td>
-                                <td> <?php echo $row['telefon']; ?> </td>
-                                <td> <?php echo $row['cinsiyet']; ?> </td>
-                                <td> <?php echo $row['dogum_tarihi']; ?> </td>
-                                <td> <?php echo $row['adres']; ?> </td>
-                                <td> <?php echo $row['kisi_bilgi']; ?> </td>
-                                <td> <?php echo $row['personel_grup']; ?> </td>
-                                <td>
-                                    <button type="button" class="btn btn-success editbtn"> Duzenle </button>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-danger deletebtn"> Sil </button>
-                                </td>
-                            </tr>
-                        </tbody>
+                            if($query_run)
+                            {
+                                foreach($query_run as $row)
+                                {
+                        ?>
+                                <tbody>
+                                    <tr>
+                                        <td> <?php echo $row['id']; ?> </td>
+                                        <td> <?php echo $row['tc']; ?> </td>
+                                        <td> <?php echo $row['ad']; ?> </td>
+                                        <td> <?php echo $row['soyad']; ?> </td>
+                                        <td> <?php echo $row['meslek']; ?> </td>
+                                        <td> <?php echo $row['mail']; ?> </td>
+                                        <td> <?php echo $row['telefon']; ?> </td>
+                                        <td> <?php echo $row['cinsiyet']; ?> </td>
+                                        <td> <?php echo $row['dogum_tarihi']; ?> </td>
+                                        <td> <?php echo $row['adres']; ?> </td>
+                                        <td> <?php echo $row['kisi_bilgi']; ?> </td>
+                                        <td> <?php echo $row['personel_grup']; ?> </td>
+                                        <td>
+                                            <button type="button" class="btn btn-success editbtn"> Duzenle </button>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-danger deletebtn"> Sil </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
                         <?php           
-                    }
-                }
-                else 
-                {
-                    echo "No Record Found";
-                }
-            ?>
+                                }
+                            }
+                            else 
+                            {
+                                echo "No Record Found";
+                            }
+                        ?>
                     </table>
                 </div>
-            </div>
-
-
-
+        </div>
     </div>
+
 
 
 
@@ -353,56 +350,32 @@ if (isset($_POST['grup'])) {
             });
         });
     </script> 
+<script>
+        $('#birim').change(function() {
+            console.log($(this).val());
+            
+
+            var birim = $(this).val();
+            var form = new FormData();
+
+            form.append("grup", birim);
+
+            var settings = {
+                "url": "http://localhost/personelfinal/stufftable.php",
+                "method": "POST",
+                "processData": false,
+                "mimeType": "multipart/form-data",
+                "contentType": false,
+                "data": form
+            };
+
+            $.ajax(settings).done(function (response) {
+                $("#datatableid").html(response);
+            });
+        });
+</script>
 
 
 </body>
 </html>
 
-<script>
-        $('#birim').change(function() {
-            console.log($(this).val());
-            
-            $birim = $(this).val();
-
-            var val = $(this).val();
-
-            // $.post('http://localhost/personelfinal/stuffList.php', {'grup' : val}, function(data){
-            //     console.log("buradaıııım");
-            // });
-
-            // var fd = new FormData();    
-            // fd.append( 'grup', val );
-
-            // $.ajax({
-            // url: 'http://localhost/personelfinal/stuffList.php',
-            // data: fd,
-            // processData: false,
-            // contentType: false,
-            // type: 'POST',
-            // success: function(data){
-            //     alert(data);
-            // }
-            // });
-
-
-            var form = new FormData();
-            form.append("grup", "Web Birimi");
-
-            var settings = {
-            "url": "http://localhost/personelfinal/stuffList.php",
-            "method": "POST",
-            "processData": false,
-            "mimeType": "multipart/form-data",
-            "contentType": false,
-            "data": form
-            };
-
-            $.ajax(settings).done(function (response) {
-                console.log("olduy");
-                console.log(response);
-            });
-
-
-           
-        });
-</script>
